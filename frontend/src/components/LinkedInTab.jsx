@@ -111,7 +111,7 @@ const TOPIC_IDEAS = [
   'How I went from zero to my first role in tech',
 ];
 
-function PostCreator({ resumeText }) {
+function PostCreator({ resumeText, isMobile }) {
   const [topic, setTopic] = useState('');
   const [tone, setTone] = useState('Professional');
   const [length, setLength] = useState('medium');
@@ -156,7 +156,7 @@ function PostCreator({ resumeText }) {
       </div>
 
       {/* Tone + Length */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 12 }}>
         <div>
           <label style={{ fontSize: 12, fontWeight: 600, color: '#a0aec0', display: 'block', marginBottom: 6 }}>Tone</label>
           <select className="input" value={tone} onChange={e => setTone(e.target.value)} style={{ background: '#0f1117', cursor: 'pointer' }}>
@@ -223,7 +223,7 @@ function PostCreator({ resumeText }) {
 
 /* ─── Main Tab ───────────────────────────────────────────── */
 
-export default function LinkedInTab({ resumeText }) {
+export default function LinkedInTab({ resumeText, isMobile }) {
   const [mode, setMode] = useState('post');
 
   return (
@@ -263,7 +263,7 @@ export default function LinkedInTab({ resumeText }) {
         </div>
       </div>
 
-      {mode === 'post' ? <PostCreator resumeText={resumeText} /> : <ProfileOptimizer resumeText={resumeText} />}
+      {mode === 'post' ? <PostCreator resumeText={resumeText} isMobile={isMobile} /> : <ProfileOptimizer resumeText={resumeText} isMobile={isMobile} />}
     </div>
   );
 }
